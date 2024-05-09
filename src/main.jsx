@@ -14,6 +14,11 @@ import Footer from './Pages/Footer/Footer';
 import Home from './Pages/Home/Home';
 import Login from './Pages/Login/Login';
 import Register from './Pages/Register/Register';
+import AllJobs from './Pages/AllJobs/AllJobs'
+import AppliedJobs from './Pages/ApplierJobs/ApplierJobs'
+import AddJobs from './Pages/AddJobs/AddJobs'
+import MyJobs from './Pages/MyJobs/MyJobs'
+import Blogs from './Pages/Blogs/Blogs'
 
 const router = createBrowserRouter([
   {
@@ -32,6 +37,26 @@ const router = createBrowserRouter([
       {
         path: '/',
         element: <Home></Home>,
+      },
+      {
+        path: '/alljobs',
+        element: <AllJobs></AllJobs>,
+      },
+      {
+        path: '/appliedjobs',
+        element: <AppliedJobs></AppliedJobs>,
+      },
+      {
+        path: '/addjob',
+        element: <AddJobs></AddJobs>,
+      },
+      {
+        path: '/myjobs',
+        element: <MyJobs></MyJobs>,
+      },
+      {
+        path: '/blogs',
+        element: <Blogs></Blogs>,
       },
       {
         path: '/login',
