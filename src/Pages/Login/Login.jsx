@@ -75,7 +75,7 @@ const Login = () => {
 
   return (
     
-    <div className=" bg-[#000000]">
+    <div className=" ">
       <div className=" pb-10" >
           
       

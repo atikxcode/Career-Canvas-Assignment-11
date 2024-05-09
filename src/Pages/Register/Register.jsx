@@ -89,7 +89,7 @@ const Register = () => {
   }
 
   return (
-    <div className='bg-[#000000]  .page-container '>
+    <div className='  .page-container '>
     <div className='pb-10'>
  
 
