@@ -20,6 +20,14 @@ import AddJobs from './Pages/AddJobs/AddJobs'
 import MyJobs from './Pages/MyJobs/MyJobs'
 import Blogs from './Pages/Blogs/Blogs'
 
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from '@tanstack/react-query'
+import ViewDetails from './Pages/ViewDetails/ViewDetails';
+const queryClient = new QueryClient()
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -66,15 +74,24 @@ const router = createBrowserRouter([
         path: '/register',
         element: <Register></Register>,
       },
+      {
+        path: '/viewdetails/:id',
+        element: <ViewDetails></ViewDetails>,
+        loader: ({params}) => fetch(`http://localhost:5000/joblisted/${params.id}`)
+      },
     ]
   },
 ]);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-   <AuthProvider>
+
+<QueryClientProvider client={queryClient}>
+    <AuthProvider>
     <RouterProvider router={router} />
 
     </AuthProvider>
+    </QueryClientProvider>
+   
   </React.StrictMode>,
 )

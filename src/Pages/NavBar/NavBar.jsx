@@ -17,14 +17,7 @@ const NavBar = () => {
   }
 
 
-  const [typeEffect] = useTypewriter({
-    words: ['CareerCanvas'],
-    loop:{},
-    typeSpeed:110,
-    deleteSpeed:40
-  })
 
-  
  
   
 
@@ -59,7 +52,7 @@ const NavBar = () => {
         {navLinks}
       </ul>
     </div>
-    <h2 className="font-bold  md:text-2xl lg:text-2xl xl:text-2xl text-orange-400 ">{typeEffect}</h2>
+    <h2 className="font-bold  md:text-2xl lg:text-2xl xl:text-2xl text-orange-400 ">CareerCanvas</h2>
   </div>
   <div className="navbar-center hidden lg:flex ">
   <ul className=" menu menu-horizontal px-1 font-semibold text-white ">
