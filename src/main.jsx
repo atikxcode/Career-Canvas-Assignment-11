@@ -26,6 +26,8 @@ import {
   useQuery,
 } from '@tanstack/react-query'
 import ViewDetails from './Pages/ViewDetails/ViewDetails';
+import UpdateJob from './Pages/UpdateJob/UpdateJob';
+
 const queryClient = new QueryClient()
 
 const router = createBrowserRouter([
@@ -73,6 +75,11 @@ const router = createBrowserRouter([
       {
         path: '/register',
         element: <Register></Register>,
+      },
+      {
+        path: '/updatejob/:id',
+        element: <UpdateJob></UpdateJob>,
+        loader: ({params}) => fetch(`http://localhost:5000/joblisted/${params.id}`)
       },
       {
         path: '/viewdetails/:id',
