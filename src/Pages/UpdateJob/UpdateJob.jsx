@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Providers/AuthProvider';
 import Aos from 'aos';
 import { ToastContainer, toast } from "react-toastify";
@@ -10,6 +10,9 @@ const UpdateJob = () => {
   const updatedJob = useLoaderData();
   console.log("update job list here", updatedJob);
 
+  const {_id, image, title,category, description, postingDate, deadline, salaryRange } = updatedJob;
+
+  const navigate = useNavigate();
   const [startDate, setStartDate] = useState(new Date());
   const {user} = useContext(AuthContext);
   useEffect(() => {
@@ -17,7 +20,7 @@ const UpdateJob = () => {
   },[])
 
 
-  const notify = () => toast("Updated The Tourist Spot Successfully");
+  const notify = () => toast("Updated The Job Details Successfully");
 
 
   const handleUpdate = e => {
@@ -25,34 +28,35 @@ const UpdateJob = () => {
    
     const form = e.target;
     const image = form.image.value;
-    const name = form.spot.value;
-    const countries = form.country.value;
-    const country = countries;
-    const location = form.location.value;
-    const short_description = form.description.value;
-    const cost = form.cost.value;
-    const average_cost = parseInt(cost);
-    const seasonality = form.season.value;
-    const travel_time = form.time.value;
-    const visit = form.visit.value;
-    const total_visitors_per_year = parseInt(visit);
-   
+    const title = form.title.value;
+    const email = user.email;
+    const name = user.displayName;
+    const category = form.category.value;
+    const salaryRange = form.salary.value;
+    const description = form.description.value;
+    const postingDate = form.posting_date.value;
+    const deadline = form.deadline.value;
+    const totalApplied = parseInt(form.applied.value);
 
-    const updateTourSpot = {image, name, country, location, short_description, average_cost, seasonality, travel_time, total_visitors_per_year};
-    console.log(updateTourSpot)
 
-    fetch(`https://assignment-10-server-zeta-smoky.vercel.app/touristspot/${_id}`, {
+    const updatedJobPost = {image, title, email, name, category, salaryRange, description,postingDate, deadline, totalApplied };
+    console.log('updated job post here', updatedJobPost)
+
+    fetch(`http://localhost:5000/joblisted/${_id}`, {
       method: "PUT",
       headers: {
         'content-type': 'application/json'
       },
-      body: JSON.stringify(updateTourSpot)
+      body: JSON.stringify(updatedJobPost)
     })
     .then(res => res.json())
     .then(data => {
       console.log(data)
       if(data.modifiedCount > 0){
          notify();
+         setTimeout(() => {
+          navigate('/myjobs')
+         }, 1500);
          
       }
       
@@ -87,14 +91,14 @@ const UpdateJob = () => {
 <label className="label">
 <span className="text-white  text-[20px] font-semibold">Image</span>
 </label>
-<input type="text" placeholder="Enter image URL of the Job Banner" name="image" className="input bg-inherit placeholder:text-white placeholder:font-semibold text-white hover:border-white mb-4 border-[1px] border-gray-400" required />
+<input type="text" placeholder="Enter image URL of the Job Banner" defaultValue={image} name="image" className="input bg-inherit placeholder:text-white placeholder:font-semibold text-white hover:border-white mb-4 border-[1px] border-gray-400" required />
 </div>
 
 <div className="form-control">
 <label className="label">
 <span className="text-white  text-[20px] font-semibold">Job Title</span>
 </label>
-<input type="text" placeholder="Enter Job Title" name="title" className="input bg-inherit placeholder:text-white placeholder:font-semibold text-white hover:border-white mb-4 border-[1px] border-gray-400" required />
+<input type="text" placeholder="Enter Job Title" name="title" defaultValue={title} className="input bg-inherit placeholder:text-white placeholder:font-semibold text-white hover:border-white mb-4 border-[1px] border-gray-400" required />
 </div>
 
 <div className="form-control">
@@ -116,7 +120,7 @@ const UpdateJob = () => {
 <span className="text-white  text-[20px] font-semibold">Job Category</span>
 </label>
 
-<select name="category" className="input bg-inherit placeholder:text-white placeholder:font-semibold text-white hover:border-white mb-4 border-[1px] border-gray-400" required>
+<select name="category" defaultValue={category} className="input bg-inherit placeholder:text-white placeholder:font-semibold text-white hover:border-white mb-4 border-[1px] border-gray-400" required>
 
 <option className="bg-[#000000]" value='On Site'>On Site</option>
 <option className="bg-[#000000]" value='Remote'>Remote</option>
@@ -132,21 +136,21 @@ const UpdateJob = () => {
 <label className="label">
 <span className="text-white   text-[20px] font-semibold">Salary Range</span>
 </label>
-<input type="text" placeholder="Enter Salary Range" name="salary" className="input bg-inherit placeholder:text-white placeholder:font-semibold text-white hover:border-white mb-4 border-[1px] border-gray-400" required />
+<input type="text" placeholder="Enter Salary Range" defaultValue={salaryRange} name="salary" className="input bg-inherit placeholder:text-white placeholder:font-semibold text-white hover:border-white mb-4 border-[1px] border-gray-400" required />
 </div>
 
 <div className="form-control">
 <label className="label">
 <span className="text-white  text-[20px] font-semibold">Job Description</span>
 </label>
-<input type="text" placeholder="Give a short description about the Job" name="description" className="input bg-inherit placeholder:text-white placeholder:font-semibold text-white hover:border-white mb-4 border-[1px] border-gray-400" required />
+<input type="text" placeholder="Give a short description about the Job" defaultValue={description} name="description" className="input bg-inherit placeholder:text-white placeholder:font-semibold text-white hover:border-white mb-4 border-[1px] border-gray-400" required />
 </div>
 
 <div className="form-control">
 <label className="label">
 <span className="text-white  text-[20px] font-semibold">Job Posting Date</span>
 </label>
-<input type="date" placeholder="Average cost " name="posting_date" className="input bg-inherit text-white hover:border-white mb-4 border-[1px] border-gray-400" required />
+<input type="date" placeholder="Average cost " name="posting_date" defaultValue={postingDate} className="input bg-inherit text-white hover:border-white mb-4 border-[1px] border-gray-400" required />
 </div>
 
 <div className="form-control">
@@ -159,6 +163,7 @@ const UpdateJob = () => {
   placeholderText="Select a date"
   className="input bg-inherit text-white hover:border-white mb-4 border-[1px] border-gray-400 w-full"
   name="deadline"
+  defaultValue={deadline}
   required
 />
 </div>
@@ -167,7 +172,7 @@ const UpdateJob = () => {
 <label className="label">
 <span className="text-white  text-[20px] font-semibold">Job Applicants Number</span>
 </label>
-<input type="number" defaultValue={0} placeholder="Job Applied for this Post" name="applied" className="input bg-inherit text-white hover:border-white mb-4 border-[1px] border-gray-400" required />
+<input type="number" readOnly defaultValue={0} placeholder="Job Applied for this Post" name="applied" className="input bg-inherit text-white hover:border-white mb-4 border-[1px] border-gray-400" required />
 </div>
 
 
