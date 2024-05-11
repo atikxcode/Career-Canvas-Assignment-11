@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import image from '../../assets/5e85e013516e7adb3d528a3d_rm_bg.jpg'
+import NavBar from "../NavBar/NavBar";
 const AllJobs = () => {
 
   const {isPending, isError, error,  data: jobLists} = useQuery({
@@ -22,24 +23,27 @@ const AllJobs = () => {
   console.log(jobLists)
 
   return (
-    <div className=" ">
-      <div className="flex flex-col gap-8 items-center  text-white">
+    <div className=" relative">
+
+      
         
-        <div className="w-full h-[900px]  relative" style={{backgroundImage: `url(${image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover'}}>
+     <div className="flex flex-col gap-24">
+
+
+      
+     <div className=" w-full h-[900px]  relative" style={{backgroundImage: `url(${image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover'}}>
+        <NavBar></NavBar>
         <div className="absolute top-[40%] flex flex-col justify-center text-center  w-full items-center gap-8">
-        <h2 className="text-[35px]">Explore Exciting Opportunities: Browse Our Job Listings</h2>
-        <p className="text-[18px] w-[900px] text-center">Welcome to our job listings page! Discover a diverse range of career opportunities waiting for you. Whether you're seeking full-time, part-time, remote, or hybrid positions, we have something for everyone. Browse through our curated collection of job openings and take the next step towards your professional journey. Start exploring now and find your dream job today!</p>
+        <h2 className="text-[35px] text-white">Explore Exciting Opportunities: <span className="text-orange-400">Browse Our Job Listings</span></h2>
+        <p className="text-[18px] text-white w-[900px] text-center">Welcome to our job listings page! Discover a diverse range of career opportunities waiting for you. Whether you're seeking full-time, part-time, remote, or hybrid positions, we have something for everyone. Browse through our curated collection of job openings and take the next step towards your professional journey. Start exploring now and find your dream job today!</p>
         <button className="btn ">Explore Now</button>
         </div>
         </div>
        
-       <div>
-       <table className="table">
-       
-       </table>
-       
-       </div>
-        <div className="grid grid-cols-1 gap-12">
+      
+
+    <div className="mx-auto container">
+    <div className="grid grid-cols-1 gap-12">
           {
             jobLists.map(job => <div key={job._id} className="">
 
@@ -68,7 +72,7 @@ const AllJobs = () => {
               <td>{job.postingDate}</td>
               <td>{job.deadline}</td>
               <td>{job.salaryRange}</td>
-              <td> <Link to={`/viewdetails/${job._id}`}> <button className="text-gray-800 hover:text-white hover:font-bold transition-all">View Details</button></Link></td>
+              <td> <Link to={`/viewdetails/${job._id}`}> <button className=" btn font-light hover:text-white  transition-all">View Details</button></Link></td>
             </tr>
            
           </tbody>
@@ -81,8 +85,12 @@ const AllJobs = () => {
           </div>)
           }
         </div>
+    </div>
+
+        
+     </div>
       
-      </div>
+     
     </div>
   );
 };

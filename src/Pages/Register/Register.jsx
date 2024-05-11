@@ -6,7 +6,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import './Register.css'
-
+import image from '../../assets/Log In.png'
+import NavBar from '../NavBar/NavBar';
 
 
 
@@ -89,7 +90,9 @@ const Register = () => {
   }
 
   return (
-    <div className='  .page-container '>
+    <div className='' style={{backgroundImage:`linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(${image})`}}>
+      <div className='.page-container '>
+        <NavBar></NavBar>
     <div className='pb-10'>
  
 
@@ -98,7 +101,7 @@ const Register = () => {
     <div className=''>
 
     <div>
-    <h2 className="my-10 text-center text-white text-[35px] font-semibold">Register your account</h2>
+    <h2 className=" text-center text-white text-[35px] font-semibold">Register your account</h2>
     
 
 <form  className="md:3/4 lg:w-1/2 mx-auto" onSubmit={handleRegister}>
@@ -158,6 +161,7 @@ const Register = () => {
     
       <ToastContainer />
   </div>
+    </div>
   );
 };
 

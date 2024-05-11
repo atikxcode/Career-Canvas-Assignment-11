@@ -3,6 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { useTypewriter } from "react-simple-typewriter";
 import './NavBar.css'
+import image from '../../assets/C (2).png'
 
 const NavBar = () => {
 
@@ -52,7 +53,12 @@ const NavBar = () => {
         {navLinks}
       </ul>
     </div>
-    <h2 className="font-bold  md:text-2xl lg:text-2xl xl:text-2xl text-orange-400 ">CareerCanvas</h2>
+  <Link to='/'>
+  <div className="flex items-center gap-4">
+   <img className="h-[60px] w-[60px] rounded-[50%]" src={image} alt="" />
+    <h2 className="font-bold  md:text-2xl lg:text-xl xl:text-xl text-orange-400 ">CareerCanvas</h2>
+   </div>
+  </Link>
   </div>
   <div className="navbar-center hidden lg:flex ">
   <ul className=" menu menu-horizontal px-1 font-semibold text-white ">
@@ -82,7 +88,7 @@ const NavBar = () => {
       
     }
 
-    <button>
+    <button className="text-white">
       <label className="swap swap-rotate">
   
   {/* this hidden checkbox controls the state */}

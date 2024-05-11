@@ -1,12 +1,12 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-
+import { FaGoogle } from "react-icons/fa";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { FaEye, FaEyeSlash } from "react-icons/fa";
-
-
+import { FaEye, FaEyeSlash, FaGithub  } from "react-icons/fa";
+import NavBar from '../NavBar/NavBar'
+import image from '../../assets/Log In.png'
 import Footer from "../Footer/Footer";
 
 
@@ -75,9 +75,11 @@ const Login = () => {
 
   return (
     
-    <div className=" ">
+    <div className="relative">
+      
+      <div style={{backgroundImage: `linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url(${image})`}}>
       <div className=" pb-10" >
-          
+        <NavBar></NavBar>
       
       <div className="">
         
@@ -115,14 +117,18 @@ const Login = () => {
   <div className="form-control mt-6">
     <button className="bg-gray-400 bg-opacity-70  p-3 rounded-xl hover:bg-white hover:text-black duration-700 text-white text-xl font-semibold">Login</button>
   </div>
-  <button onClick={googleLogin} className="mt-10 border w-full p-3 text-lg hover:text-white hover:bg-gray-600 transition-all rounded-2xl">Sign In with Google</button>
-  <button onClick={githubLogin} className="mt-10 border w-full p-3 text-lg hover:text-white hover:bg-gray-600 transition-all rounded-2xl">Sign In with Github</button>
-  <p className="text-center mt-6  font-semibold text-gray-400">Don't Have An Account? <Link to='/register'><span className="text-white text-[16px] font-semibold">Register</span></Link></p>
+  
+  <button onClick={googleLogin} className="mt-10 border flex items-center justify-center gap-2 w-full p-3 text-lg hover:text-white hover:bg-gray-600 transition-all rounded-2xl"><span>Sign In with Google </span><span className="text-lg"><FaGoogle /></span></button>
+  
+ 
+  <button onClick={githubLogin} className="mt-10 border w-full p-3 text-lg hover:text-white hover:bg-gray-600 transition-all rounded-2xl flex items-center justify-center gap-2"><span>Sign In with Github</span> <span><FaGithub /></span></button>
+  <p className="text-center mt-6  font-semibold text-gray-400">Don't Have An Account? <Link to='/register'><span className="text-white text-[16px] font-semibold ">Register</span></Link></p>
 </form>
       </div>
 
       </div>
       
+      </div>
       </div>
       </div>
 
@@ -138,10 +144,7 @@ const Login = () => {
 
 
      
-     <div className="">
-     <Footer></Footer>
-     </div>
-     
+   
       <ToastContainer />
   
     </div>

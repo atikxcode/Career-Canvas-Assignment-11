@@ -27,8 +27,8 @@ const Slider = () => {
   },[])
   return (
     
-  <div className=' my-10' >
-    <div className='container mx-auto p-4' data-aos="fade-up" data-aos-easing="linear" data-aos-duration="500">
+  <div className='' >
+    <div className='' data-aos="fade-up" data-aos-easing="linear" data-aos-duration="500">
     <Swiper
         spaceBetween={30}
         centeredSlides={true}
