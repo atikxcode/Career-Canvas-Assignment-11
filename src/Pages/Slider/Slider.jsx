@@ -27,7 +27,7 @@ const Slider = () => {
   },[])
   return (
     
-  <div className='' >
+  <div className='mt-24' >
     <div className='' data-aos="fade-up" data-aos-easing="linear" data-aos-duration="500">
     <Swiper
         spaceBetween={30}

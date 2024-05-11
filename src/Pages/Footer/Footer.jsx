@@ -1,9 +1,15 @@
+import { useContext } from "react";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const Footer = () => {
+
+  const {theme, setTheme} = useContext(AuthContext)
   return (
  
 
-    <footer className=" footer footer-center p-10  text-white ">
+    
+
+<footer className={`footer footer-center p-10 ${theme === 'light' ? "text-black" : "text-white"}`}>
       <nav className="grid grid-flow-col gap-4">
         <a className="link link-hover">About us</a>
         <a className="link link-hover">Contact</a>
@@ -21,6 +27,7 @@ const Footer = () => {
         <p>Copyright © 2024 - All right reserved by TrekTales</p>
       </aside>
     </footer>
+
       );
 };
 

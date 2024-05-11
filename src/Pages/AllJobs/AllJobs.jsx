@@ -2,7 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import image from '../../assets/5e85e013516e7adb3d528a3d_rm_bg.jpg'
 import NavBar from "../NavBar/NavBar";
+import { useContext } from "react";
+import { AuthContext } from "../../Providers/AuthProvider";
 const AllJobs = () => {
+
+  const {theme, setTheme} = useContext(AuthContext)
 
   const {isPending, isError, error,  data: jobLists} = useQuery({
     queryKey: ['jobs'],
@@ -51,7 +55,7 @@ const AllJobs = () => {
       
             <div className="overflow-x-auto">
         <table className="table">
-        <thead className="text-white">
+        <thead className={theme === 'light' ? "text-black" : "text-white"}>
             <tr>
               <th>Cover</th>
               <th>Job Title</th>

@@ -1,11 +1,86 @@
 import { Link, useLoaderData } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../Providers/AuthProvider";
+import { toast } from "react-toastify";
+import 'aos/dist/aos.css'
+import Aos from "aos";
 
 
 const ViewDetails = () => {
 
+  // const notify = () => toast("Updated The Job Details Successfully");
+
 
   const jobDetails = useLoaderData();
+
+ 
+
+
+  useEffect(() => {
+    Aos.init();
+  },[])
+
+
+  const {user} = useContext(AuthContext);
+
+
+  const handleApplyClick = () => {
+    const modal = document.getElementById('my_modal_5');
+    if (modal) {
+      modal.showModal();
+    }
+  };
+
+  const handleJob = async (id) => {
+    console.log(id)
+    try{
+      const response = await fetch(`http://localhost:5000/joblisted/${id}/apply`, {
+        method: 'PUT',
+        headers: {
+          'content-type': 'application/json'
+        }
+      });
+
+      const data = await response.json();
+
+      if(!response.ok){
+        throw new Error (data.message);
+      }
+
+      console.log('Applied Successfully', data.updatedTotalApplied);
+    
+
+
+      const AppliedJobDetails = {image: jobDetails.image, title: jobDetails.title, email: user?.email, name: user?.displayName, category: jobDetails.category, salaryRange: jobDetails.salaryRange, description: jobDetails.description, postingDate: jobDetails.postingDate, deadline: jobDetails.deadline};
+    console.log(AppliedJobDetails)
+
+    fetch('http://localhost:5000/appliedjob', {
+      method: "POST",
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(AppliedJobDetails)
+    })
+    .then(res => res.json())
+    .then(data => {
+      console.log(data)
+      if(data.insertedId){
+        //  notify();
+        console.log('successful')
+         
+      }
+      
+      
+    })
+
+
+
+    
+    } catch (error) {
+      console.error('Error applying to job: ', error)
+    }
+  }
 
 
   // console.log(jobDetails)
@@ -40,7 +115,60 @@ const ViewDetails = () => {
             </div>
             </div>
             <div className="p-8 items-center flex">
-            <Link> <button className="text-gray-400 btn border-orange-400 bg-inherit  hover:text-white hover:font-bold hover:border-orange-500 transition-all">Apply</button></Link>
+            <Link> <button className="text-gray-400 btn border-orange-400 bg-inherit hover:text-white hover:font-bold hover:border-orange-500 transition-all" onClick={handleApplyClick}>Apply</button>
+      <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box">
+
+
+
+        <div className="hero ">
+  <div className="hero-content flex-col lg:flex-row-reverse">
+    
+    <div className="card shrink-0 w-full max-w-sm bg-base-100">
+      <form className="card-body" >
+
+      <div className="form-control">
+          <label className="label">
+            <span className="label-text">Name</span>
+          </label>
+          <input type="text" defaultValue={user?.displayName} readOnly placeholder="Name" className="input input-bordered" required />
+         
+        </div>
+
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Email</span>
+          </label>
+          <input type="email" defaultValue={user?.email} readOnly placeholder="Email" className="input input-bordered" required />
+        </div>
+
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text">Resume Link</span>
+          </label>
+          <input type="text"   placeholder="Your Link Here" className="input input-bordered" required />
+        </div>
+        
+        <div className="form-control mt-6">
+          <button  className="btn btn-primary" onClick={() => handleJob(jobDetails._id)}>Apply</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+          
+          
+          
+          
+          
+          <div className="modal-action">
+            <form method="dialog">
+              {/* if there is a button in form, it will close the modal */}
+              <button className="btn" onClick={() => document.getElementById('my_modal_5').close()}>Close</button>
+            </form>
+          </div>
+        </div>
+      </dialog></Link>
           </div>
             
            </div>

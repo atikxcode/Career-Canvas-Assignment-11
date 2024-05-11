@@ -13,6 +13,9 @@ const AuthProvider = ({children}) => {
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
 
+  
+
+
   const handleGoogleSignIn = () => {
     return signInWithPopup(auth, googleProvider)
   }
@@ -24,6 +27,7 @@ const AuthProvider = ({children}) => {
 
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
+  const[theme, setTheme] = useState(localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light');
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -72,7 +76,8 @@ const AuthProvider = ({children}) => {
     handleGithubSignIn,
     updateUser,
     loading,
- 
+    theme,
+    setTheme
 
   }
 

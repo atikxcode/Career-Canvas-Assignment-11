@@ -21,3 +21,7 @@
 .avatar:hover .tooltip{
   visibility: visible;
 }
+
+.active-link {
+  color:blue;
+}

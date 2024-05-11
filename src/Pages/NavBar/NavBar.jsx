@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { useTypewriter } from "react-simple-typewriter";
@@ -6,6 +6,24 @@ import './NavBar.css'
 import image from '../../assets/C (2).png'
 
 const NavBar = () => {
+
+  const {theme, setTheme} = useContext(AuthContext);
+
+  const handleToggleTheme = (e) => {
+    if(e.target.checked){
+      setTheme('black');
+    } else {
+      setTheme('light')
+    }
+  }
+
+  useEffect(() => {
+    localStorage.setItem('theme', theme);
+    const localTheme = localStorage.getItem('theme');
+    document.querySelector('html').setAttribute('data-theme', localTheme);
+
+  },[theme])
+
 
   
   const {user , logOut} = useContext(AuthContext);
@@ -24,17 +42,17 @@ const NavBar = () => {
 
 
   const navLinks = <>
-    <li className="z-50"><NavLink to='/'>Home</NavLink></li>
+    <li className="z-50"><NavLink to='/' className={theme === 'light' ? "text-black" : "text-white"}>Home</NavLink></li>
   
-    <li className="z-50"><NavLink to='/alljobs'>All Jobs</NavLink></li>
+    <li className="z-50"><NavLink to='/alljobs' className={theme === 'light' ? "text-black" : "text-white"}>All Jobs</NavLink></li>
     
-    <li className="z-50"><NavLink to='/appliedjobs'>Applied Jobs</NavLink></li>
+    <li className="z-50"><NavLink to='/appliedjobs' className={theme === 'light' ? "text-black" : "text-white"}>Applied Jobs</NavLink></li>
  
-    <li className="z-50"><NavLink to='/addjob'>Add A Job</NavLink></li>
+    <li className="z-50"><NavLink to='/addjob' className={theme === 'light' ? "text-black" : "text-white"}>Add A Job</NavLink></li>
 
-    <li className="z-50"><NavLink to='/myjobs'>My Jobs</NavLink></li>
+    <li className="z-50"><NavLink to='/myjobs' className={theme === 'light' ? "text-black" : "text-white"}>My Jobs</NavLink></li>
 
-    <li className="z-50"><NavLink to='/blogs'>Blogs</NavLink></li>
+    <li className="z-50"><NavLink to='/blogs' className={theme === 'light' ? "text-black" : "text-white"}>Blogs</NavLink></li>
 
   
   </>
@@ -83,12 +101,14 @@ const NavBar = () => {
 </div>
     {
       user ? 
-      <button  className="btn bg-gray-400 bg-opacity-70  border-0 text-white hover:text-black hover:bg-white duration-700" onClick={handleSignOut}>Sign Out</button>
+      <button  className={`btn bg-gray-400 bg-opacity-70 border-0 ${theme === 'light' ? "text-black" : "text-white"} hover:text-black hover:bg-white duration-700`}
+
+      onClick={handleSignOut}>Sign Out</button>
       : <Link to='/login'><button className="btn bg-gray-400 bg-opacity-70  border-0 text-white hover:text-black hover:bg-white duration-700">Login</button></Link> 
       
     }
 
-    <button className="text-white">
+    <button className={theme === 'light' ? "text-black" : "text-white"} onChange={handleToggleTheme}>
       <label className="swap swap-rotate">
   
   {/* this hidden checkbox controls the state */}
