@@ -1,4 +1,5 @@
-import React from 'react';
+import Aos from 'aos';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import 'react-toastify/dist/ReactToastify.css';
@@ -8,6 +9,10 @@ const MyAddedJobList = ({jobs}) => {
   console.log('Here are the jobs', jobs)
 
   const {_id, image, title, category, salaryRange, postingDate, deadline} = jobs;
+
+  useEffect(() => {
+    Aos.init();
+  },[])
 
 
   const handleDelete = id => {
@@ -62,8 +67,8 @@ const MyAddedJobList = ({jobs}) => {
 
 
   return (
-    <div>
-         <div className="overflow-x-auto">
+    <div className='mx-auto container'>
+         <div className="overflow-x-auto"  data-aos="fade-up" data-aos-easing="linear" data-aos-duration="800">
   <table className="table">
    
     <thead className="text-white">
