@@ -101,10 +101,14 @@ const NavBar = () => {
 </div>
     {
       user ? 
-      <button  className={`btn bg-gray-400 bg-opacity-70 border-0 ${theme === 'light' ? "text-black" : "text-white"} hover:text-black hover:bg-white duration-700`}
+      <button  className={`p-4 text-[14px] font-bold   border-0 ${
+        theme === 'light' ? "text-white bg-black " : "text-black bg-white"
+      } duration-700`}
 
       onClick={handleSignOut}>Sign Out</button>
-      : <Link to='/login'><button className="btn bg-gray-400 bg-opacity-70  border-0 text-white hover:text-black hover:bg-white duration-700">Login</button></Link> 
+      : <Link to='/login'><button className={`p-4 text-[14px] font-bold   border-0 ${
+        theme === 'light' ? "text-white bg-black " : "text-black bg-white"
+      } duration-700`}>Login</button></Link> 
       
     }
 

@@ -4,7 +4,7 @@ import image from '../../assets/5e85e013516e7adb3d528a3d_rm_bg.jpg'
 import NavBar from "../NavBar/NavBar";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
-
+import { FaSearch } from "react-icons/fa";
 
 
 const AllJobs = () => {
@@ -13,6 +13,7 @@ const AllJobs = () => {
 
   
 
+ 
   
 
   const {isPending, isError, error,  data: jobLists} = useQuery({
@@ -38,7 +39,7 @@ const AllJobs = () => {
 
       
         
-     <div className="flex flex-col gap-24">
+     <div className="flex flex-col gap-24 items-center">
 
 
       
@@ -50,7 +51,18 @@ const AllJobs = () => {
         <button className="btn ">Explore Now</button>
         </div>
         </div>
-       
+
+
+        <div className="w-[300px]">
+        
+        <form className={`input rounded-xl  input-bordered flex items-center gap-2 ${
+        theme === 'light' ? "text-white bg-black " : "text-white "
+      }`}>
+        <input type="text" className="grow" placeholder="Search" />
+        <button className="text-white"><FaSearch /></button>
+        </form>
+        </div>
+          
       
 
     <div className="mx-auto container">

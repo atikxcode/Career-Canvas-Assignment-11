@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 import { ToastContainer, toast } from "react-toastify";
 import { AuthContext } from "../../Providers/AuthProvider";
 import DatePicker from "react-datepicker";
-import image from '../../assets/84409.jpg'
+import image from '../../assets/city.jpg'
 import "react-datepicker/dist/react-datepicker.css";
 import NavBar from "../NavBar/NavBar";
 
