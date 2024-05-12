@@ -8,7 +8,7 @@ const Home = () => {
     <div>
       <NavBar></NavBar>
      <Slider></Slider>
-     {/* <JobByCategory></JobByCategory> */}
+     <JobByCategory></JobByCategory>
     </div>
   );
 };

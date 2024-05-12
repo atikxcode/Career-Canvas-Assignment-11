@@ -1,26 +1,53 @@
-import { Tab, TabList, TabPanel, Tabs } from "react-tabs";
+import { useContext, useState } from "react";
+
 import 'react-tabs/style/react-tabs.css';
+import { AuthContext } from "../../Providers/AuthProvider";
 
 const JobByCategory = () => {
-  return (
-    <div className="my-10 text-white">
-      <Tabs>
-            <TabList>
-                <Tab style={{backgroundColor: '#4CAF50', color: 'white', padding: '10px 15px'}}>Tab 1</Tab>
-                <Tab style={{backgroundColor: '#4CAF50', color: 'white', padding: '10px 15px'}}>Tab 2</Tab>
-                {/* Add more tabs as needed */}
-            </TabList>
 
-            <TabPanel>
-                <h2 style={{color:'#4CAF50'}}>Content for Tab 1</h2>
-                <p>This is the content of tab 1.</p>
-            </TabPanel>
-            <TabPanel>
-                <h2>Content for Tab 2</h2>
-                <p>This is the content of tab 2.</p>
-            </TabPanel>
-            {/* Add more TabPanel as needed */}
-        </Tabs>
+  const  {theme} = useContext(AuthContext);
+
+  const [activeTab, setActiveTab] = useState(1);
+
+  return (
+    <div className="my-24 mx-auto container">
+
+      <div className="flex flex-col items-center gap-20">
+
+        {/* heading and description */}
+        <div className={`flex flex-col gap-8 items-center text-center w-[800px] ${theme === 'light' ? 'text-black' : 'text-white'}`}>
+          <h2 className="text-5xl">Discover Jobs by Category</h2>
+          <p className="text-xl">Explore various job categories tailored to match your expertise and aspirations. From technology to healthcare, we curate a diverse array of opportunities to help you find the perfect fit for your career journey. Start exploring now!</p>
+        </div>
+
+        {/* tab data */}
+
+        <div className="border w-full">
+        <div className="flex">
+          <div onClick={() => setActiveTab(1)}
+          className={`w-1/2 py-4 px-6 cursor-pointer ${activeTab === 1 ? 'text-white bg-blue-500' : 'hover:bg-gray-200'}`}
+          >
+            Tab 1
+          </div>
+
+          <div onClick={() => setActiveTab(2)}
+          className={`w-1/2 py-4 px-6 cursor-pointer ${activeTab === 2 ? 'text-white bg-blue-500' : 'hover:bg-gray-200'}`}
+          >
+            Tab 2
+          </div>
+
+
+        </div>
+
+        {activeTab === 1 && <div className={`${theme === 'light' ? 'text-black' : 'text-white'}`}>Tab 1 data</div>}
+        {activeTab === 2 && <div className={`${theme === 'light' ? 'text-black' : 'text-white'}`}>Tab 2 data</div>}
+       
+
+
+        </div>
+
+      </div>
+      
     </div>
   );
 };
