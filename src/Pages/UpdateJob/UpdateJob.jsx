@@ -5,6 +5,8 @@ import Aos from 'aos';
 import { ToastContainer, toast } from "react-toastify";
 import DatePicker from "react-datepicker";
 import NavBar from '../NavBar/NavBar';
+import img from '../../assets/Untitled design.png'
+
 const UpdateJob = () => {
 
   const updatedJob = useLoaderData();
@@ -66,20 +68,22 @@ const UpdateJob = () => {
   }
 
   return (
-    <div className="" >
+    <div className="relative" >
+
+     
+
+      <div className="" style={{backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),  url(${img})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover'}}>
 
     <NavBar></NavBar>
      
     
-  
-
 
 
 
 <div className=" w-full py-24 md:py-24 lg:py-24 xl:py-16">
 <div className="flex flex-col items-center justify-center">
-<h2 className="my-10 text-center text-white text-[35px] font-semibold">Post Your Job Opportunity <span className="text-orange-400">Today!</span></h2>
-<p className="mb-10 text-center text-lg text-white w-[900px]  font-semibold">Reach a wide audience by posting your job opportunity on our platform. Whether you're hiring for full-time, part-time, remote, or hybrid positions, we provide the platform for you to connect with talented professionals. Take the next step in finding the perfect candidate for your team. Start posting your job now!</p>
+<h2 className="my-10 text-center text-white text-[35px] font-semibold"> <span className="text-orange-400">Update</span> Your Job Details</h2>
+<p className="mb-10 text-center text-lg text-white w-[900px]  font-semibold">Make Changes Where you want and Update the Job Details</p>
 
 
 </div>
@@ -189,7 +193,17 @@ const UpdateJob = () => {
 
 
 </form>
+
+
+
+
 </div>
+
+
+</div>
+
+
+
 
 
 
