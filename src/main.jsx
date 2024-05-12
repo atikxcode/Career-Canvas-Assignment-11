@@ -28,6 +28,7 @@ import {
 import ViewDetails from './Pages/ViewDetails/ViewDetails';
 import UpdateJob from './Pages/UpdateJob/UpdateJob';
 import PrivateRoute from './Pages/PrivateRoutes/PrivateRoutes';
+import ViewDetails2 from './Pages/ViewDetails/ViewDetails2';
 
 const queryClient = new QueryClient()
 
@@ -55,7 +56,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/appliedjobs',
-        element: <AppliedJobs></AppliedJobs>,
+        element: <PrivateRoute><AppliedJobs></AppliedJobs></PrivateRoute>,
       },
       {
         path: '/addjob',
@@ -63,7 +64,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/myjobs',
-        element: <MyJobs></MyJobs>,
+        element: <PrivateRoute><MyJobs></MyJobs></PrivateRoute>,
       },
       {
         path: '/blogs',
@@ -86,6 +87,12 @@ const router = createBrowserRouter([
         path: '/viewdetails/:id',
         element: <PrivateRoute><ViewDetails></ViewDetails></PrivateRoute>,
         loader: ({params}) => fetch(`http://localhost:5000/joblisted/${params.id}`)
+      },
+
+      {
+        path: '/viewdetails2/:id',
+        element: <PrivateRoute><ViewDetails2></ViewDetails2></PrivateRoute>,
+        loader: ({params}) => fetch(`http://localhost:5000/appliedjob/${params.id}`)
       },
     ]
   },

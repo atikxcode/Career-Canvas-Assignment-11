@@ -13,9 +13,6 @@ const AuthProvider = ({children}) => {
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
 
-  
-
-
   const handleGoogleSignIn = () => {
     return signInWithPopup(auth, googleProvider)
   }
@@ -62,6 +59,7 @@ const AuthProvider = ({children}) => {
       unSubscribe();
     }
   },[])
+
 
 
 

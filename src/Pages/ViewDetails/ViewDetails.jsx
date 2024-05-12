@@ -11,6 +11,7 @@ const ViewDetails = () => {
 
   const notify = () => toast("Successfully Applied for the job");
   const notify2 = () => toast("You can't apply for the job that you have posted");
+  const notify3 = () => toast("Deadline is over for this job wait for further notice");
 
 
   const jobDetails = useLoaderData();
@@ -88,7 +89,7 @@ const ViewDetails = () => {
       
       } catch (error) {
         console.error('Error applying to job: ', error)
-        notify2()
+        notify3()
       }
     }
   }
@@ -161,7 +162,7 @@ const ViewDetails = () => {
         </div>
         
         <div className="form-control mt-6">
-          <button  className="btn btn-primary" onClick={() => handleJob(jobDetails._id)}>Apply</button>
+          <button  className="btn btn-primary" onClick={() => handleJob(jobDetails._id)}>Submit</button>
         </div>
       </form>
     </div>

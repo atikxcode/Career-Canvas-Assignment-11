@@ -10,9 +10,16 @@ import image from '../../assets/Log In.png'
 import NavBar from '../NavBar/NavBar';
 import logo from '../../assets/C (2).png'
 import bg from '../../assets/building-business-city-construction-geometry.jpg'
-
+import 'aos/dist/aos.css'
+import Aos from "aos";
 
 const Register = () => {
+
+
+  useEffect(() => {
+    Aos.init();
+  },[])
+
 
   const isValidURL = (string) => {
     var res = string.match(/\bhttps?:\/\/\S+\.(jpeg|jpg|gif|png|bmp|svg|webp|tiff|ico)\b/i);
@@ -39,6 +46,7 @@ const Register = () => {
 
 
   const handleRegister = e => {
+    
     e.preventDefault();
     const form = new FormData(e.currentTarget);
 
@@ -94,7 +102,7 @@ const Register = () => {
       <NavBar></NavBar>
 
 
-    <div className='mx-auto container'>
+    <div className='mx-auto container' data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1500" >
 
     <div className="bg-white dark:bg-gray-900">
     <div className="flex justify-center h-screen">

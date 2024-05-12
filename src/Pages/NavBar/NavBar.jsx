@@ -8,7 +8,9 @@ import image from '../../assets/C (2).png'
 const NavBar = () => {
 
   const {theme, setTheme} = useContext(AuthContext);
+  const {user , logOut} = useContext(AuthContext);
 
+  // console.log(user?.photoURL)
   const handleToggleTheme = (e) => {
     if(e.target.checked){
       setTheme('black');
@@ -26,7 +28,7 @@ const NavBar = () => {
 
 
   
-  const {user , logOut} = useContext(AuthContext);
+
   
 
   const handleSignOut = () => {
@@ -91,7 +93,7 @@ const NavBar = () => {
   <div className="avatar">
     {user && (
        <div className="w-12 rounded-full ">
-       <img src={user.photoURL}/>
+       <img src={user?.photoURL} onError={(e) => {e.target.onerror = null; e.target.src='https://t4.ftcdn.net/jpg/04/70/29/97/360_F_470299797_UD0eoVMMSUbHCcNJCdv2t8B2g1GVqYgs.jpg'}} />
        <span className="tooltip">
         {user.displayName}
         </span> 

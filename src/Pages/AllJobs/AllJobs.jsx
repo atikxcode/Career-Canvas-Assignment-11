@@ -2,16 +2,21 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 import image from '../../assets/5e85e013516e7adb3d528a3d_rm_bg.jpg'
 import NavBar from "../NavBar/NavBar";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import { FaSearch } from "react-icons/fa";
-
+import 'aos/dist/aos.css'
+import Aos from "aos";
 
 const AllJobs = () => {
 
   const {theme, setTheme, user} = useContext(AuthContext)
+  const [searchTerm, setSearchTerm] = useState('');
 
   
+  useEffect(() => {
+    Aos.init();
+  },[])
 
  
   
@@ -25,12 +30,15 @@ const AllJobs = () => {
   })
 
   if(isPending){
-    return <span className="loading loading-dots loading-lg"></span>
+    return <div className="mx-auto container flex justify-center"><span className=" loading loading-dots loading-lg"></span></div>
   }
 
   if(isError){
     return <p>Error: {error.message}</p>
   }
+
+  // filtered Job
+  const filteredJobs = jobLists.filter(job => job.title.toLowerCase().includes(searchTerm.toLowerCase()));
 
   console.log(jobLists)
 
@@ -55,10 +63,10 @@ const AllJobs = () => {
 
         <div className="w-[300px]">
         
-        <form className={`input rounded-xl  input-bordered flex items-center gap-2 ${
+        <form onSubmit={(e) => e.preventDefault()} className={`input rounded-xl  input-bordered flex items-center gap-2 ${
         theme === 'light' ? "text-white bg-black " : "text-white "
       }`}>
-        <input type="text" className="grow" placeholder="Search" />
+        <input type="text" className="grow" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder="Search" />
         <button className="text-white"><FaSearch /></button>
         </form>
         </div>
@@ -68,7 +76,7 @@ const AllJobs = () => {
     <div className="mx-auto container">
     <div className="grid grid-cols-1 gap-12">
           {
-            jobLists.map(job => <div key={job._id} className="">
+            (searchTerm ? filteredJobs : jobLists).map(job => <div key={job._id} className="">
 
             <div data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1500">
       
@@ -119,4 +127,3 @@ const AllJobs = () => {
 };
 
 export default AllJobs;
-
