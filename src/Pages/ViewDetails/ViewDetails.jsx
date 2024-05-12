@@ -2,14 +2,15 @@ import { Link, useLoaderData } from "react-router-dom";
 import NavBar from "../NavBar/NavBar";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import 'aos/dist/aos.css'
 import Aos from "aos";
 
 
 const ViewDetails = () => {
 
-  // const notify = () => toast("Updated The Job Details Successfully");
+  const notify = () => toast("Successfully Applied for the job");
+  const notify2 = () => toast("You can't apply for the job that you have posted");
 
 
   const jobDetails = useLoaderData();
@@ -23,6 +24,7 @@ const ViewDetails = () => {
 
 
   const {user} = useContext(AuthContext);
+  
 
 
   const handleApplyClick = () => {
@@ -34,51 +36,60 @@ const ViewDetails = () => {
 
   const handleJob = async (id) => {
     console.log(id)
-    try{
-      const response = await fetch(`http://localhost:5000/joblisted/${id}/apply`, {
-        method: 'PUT',
+    // const applyUserEmail = user?.email;
+    // console.log(applyUserEmail)
+
+    if(user?.email === jobDetails.email){
+      return notify2();
+    } else {
+      try{
+        const response = await fetch(`http://localhost:5000/joblisted/${id}/apply`, {
+          method: 'PUT',
+          headers: {
+            'content-type': 'application/json'
+          },
+          
+        });
+  
+        const data = await response.json();
+  
+        if(!response.ok){
+          throw new Error (data.message);
+        }
+  
+        console.log('Applied Successfully', data.updatedTotalApplied);
+        notify();
+  
+  
+        const AppliedJobDetails = {image: jobDetails.image, title: jobDetails.title, email: user?.email, name: user?.displayName, category: jobDetails.category, salaryRange: jobDetails.salaryRange, description: jobDetails.description, postingDate: jobDetails.postingDate, deadline: jobDetails.deadline};
+      console.log(AppliedJobDetails)
+  
+      fetch('http://localhost:5000/appliedjob', {
+        method: "POST",
         headers: {
           'content-type': 'application/json'
+        },
+        body: JSON.stringify(AppliedJobDetails)
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        if(data.insertedId){
+          //  notify();
+          console.log('successful')
+           
         }
-      });
-
-      const data = await response.json();
-
-      if(!response.ok){
-        throw new Error (data.message);
-      }
-
-      console.log('Applied Successfully', data.updatedTotalApplied);
-    
-
-
-      const AppliedJobDetails = {image: jobDetails.image, title: jobDetails.title, email: user?.email, name: user?.displayName, category: jobDetails.category, salaryRange: jobDetails.salaryRange, description: jobDetails.description, postingDate: jobDetails.postingDate, deadline: jobDetails.deadline};
-    console.log(AppliedJobDetails)
-
-    fetch('http://localhost:5000/appliedjob', {
-      method: "POST",
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify(AppliedJobDetails)
-    })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data)
-      if(data.insertedId){
-        //  notify();
-        console.log('successful')
-         
-      }
+        
+        
+      })
+  
+  
+  
       
-      
-    })
-
-
-
-    
-    } catch (error) {
-      console.error('Error applying to job: ', error)
+      } catch (error) {
+        console.error('Error applying to job: ', error)
+        notify2()
+      }
     }
   }
 
@@ -176,6 +187,7 @@ const ViewDetails = () => {
             
             </div>
           </div>
+          <ToastContainer />
             </div>
   );
 };

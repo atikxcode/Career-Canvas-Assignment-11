@@ -27,6 +27,7 @@ import {
 } from '@tanstack/react-query'
 import ViewDetails from './Pages/ViewDetails/ViewDetails';
 import UpdateJob from './Pages/UpdateJob/UpdateJob';
+import PrivateRoute from './Pages/PrivateRoutes/PrivateRoutes';
 
 const queryClient = new QueryClient()
 
@@ -83,7 +84,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/viewdetails/:id',
-        element: <ViewDetails></ViewDetails>,
+        element: <PrivateRoute><ViewDetails></ViewDetails></PrivateRoute>,
         loader: ({params}) => fetch(`http://localhost:5000/joblisted/${params.id}`)
       },
     ]

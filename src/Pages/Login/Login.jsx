@@ -18,8 +18,8 @@ const Login = () => {
   const location = useLocation();
   const navigate = useNavigate();
   
-
-  const notify = () => toast("Wrong Email Or Password");
+  const notify = () => toast("Successfully Logged In");
+  const notify1 = () => toast("Wrong Email Or Password");
 
   const {signIn, handleGoogleSignIn, handleGithubSignIn} = useContext(AuthContext);
 
@@ -34,14 +34,17 @@ const Login = () => {
     signIn(email, password)
     .then(result => {
       console.log(result.user)
-      navigate(location?.state ? location.state : '/');
+      notify();
+      setTimeout(() => {
+        navigate(location?.state ? location.state : '/');
+      }, 1500)
       setEmail('')
       setPassword('')
       
     })
     .catch(error => {
       console.error(error)
-      notify();
+      notify1();
     })
   
   }
@@ -49,7 +52,10 @@ const Login = () => {
   const googleLogin = () => {
     handleGoogleSignIn()
   .then(result => {
-    navigate(location?.state ? location.state : '/');
+    notify();
+      setTimeout(() => {
+        navigate(location?.state ? location.state : '/');
+      }, 1500)
     const user = result.user;
   })
   .catch(error => {
@@ -60,7 +66,10 @@ const Login = () => {
   const githubLogin = () => {
     handleGithubSignIn()
     .then(result => {
-      navigate(location?.state ? location.state : '/');
+      notify();
+      setTimeout(() => {
+        navigate(location?.state ? location.state : '/');
+      }, 1500)
       const loggedInUser = result.user;
       console.log(loggedInUser);
     })
@@ -152,6 +161,7 @@ const Login = () => {
     </div>
 </div>
    </div>
+   <ToastContainer />
    </div>
     
   );

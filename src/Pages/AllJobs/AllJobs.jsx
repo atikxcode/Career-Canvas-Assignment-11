@@ -4,9 +4,16 @@ import image from '../../assets/5e85e013516e7adb3d528a3d_rm_bg.jpg'
 import NavBar from "../NavBar/NavBar";
 import { useContext } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
+
+
+
 const AllJobs = () => {
 
-  const {theme, setTheme} = useContext(AuthContext)
+  const {theme, setTheme, user} = useContext(AuthContext)
+
+  
+
+  
 
   const {isPending, isError, error,  data: jobLists} = useQuery({
     queryKey: ['jobs'],
@@ -76,7 +83,7 @@ const AllJobs = () => {
               <td>{job.postingDate}</td>
               <td>{job.deadline}</td>
               <td>{job.salaryRange}</td>
-              <td> <Link to={`/viewdetails/${job._id}`}> <button className=" btn font-light hover:text-white  transition-all">View Details</button></Link></td>
+              <td> <Link to={`/viewdetails/${job._id}`}> <button  className=" btn font-light hover:text-white  transition-all">View Details</button></Link></td>
             </tr>
            
           </tbody>
