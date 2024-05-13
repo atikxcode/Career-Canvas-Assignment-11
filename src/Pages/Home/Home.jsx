@@ -9,7 +9,7 @@ const Home = () => {
     <div>
       <NavBar></NavBar>
      {/* <Slider></Slider> */}
-     <div className="mx-auto container">
+     <div className="">
      <FramerMotionSlider isVisible={true}></FramerMotionSlider>
      </div>
      <JobByCategory></JobByCategory>
