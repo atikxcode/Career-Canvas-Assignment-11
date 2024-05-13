@@ -6,8 +6,15 @@ import { ToastContainer, toast } from "react-toastify";
 import DatePicker from "react-datepicker";
 import NavBar from '../NavBar/NavBar';
 import img from '../../assets/Untitled design.png'
+import 'aos/dist/aos.css'
+
 
 const UpdateJob = () => {
+
+  useEffect(() => {
+    Aos.init();
+  },[])
+
 
   const updatedJob = useLoaderData();
   console.log("update job list here", updatedJob);
@@ -80,10 +87,13 @@ const UpdateJob = () => {
 
 
 
+<div data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1500" >
+
+
 <div className=" w-full py-24 md:py-24 lg:py-24 xl:py-16">
 <div className="flex flex-col items-center justify-center">
 <h2 className="my-10 text-center text-white text-[35px] font-semibold"> <span className="text-orange-400">Update</span> Your Job Details</h2>
-<p className="mb-10 text-center text-lg text-white w-[900px]  font-semibold">Make Changes Where you want and Update the Job Details</p>
+<p className="mb-10 text-center text-lg text-white lg:w-[900px]  font-semibold">Make Changes Where you want and Update the Job Details</p>
 
 
 </div>
@@ -196,6 +206,8 @@ const UpdateJob = () => {
 
 
 
+
+</div>
 
 </div>
 

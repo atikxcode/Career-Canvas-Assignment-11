@@ -32,7 +32,7 @@ const ViewDetails2 = () => {
           <div className="w-full mx-auto container my-32"  data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1500" >
           <div className=" bg-[#1b1b1b]">
            
-           <div className="flex flex-row">
+           <div className="flex flex-col md:flex-row lg:flex-row xl:flex-row">
 
           
            <img className="w-full h-auto " src={jobDetails.image} alt="" />

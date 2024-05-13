@@ -7,7 +7,7 @@ const MyJobs = () => {
 
   const {user} = useContext(AuthContext)
 
-  console.log(user);
+  // console.log(user);
 
   const [myJobs, setMyJobs] = useState([]);
 

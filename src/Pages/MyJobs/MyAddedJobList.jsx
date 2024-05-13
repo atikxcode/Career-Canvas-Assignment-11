@@ -1,12 +1,15 @@
 import Aos from 'aos';
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import 'react-toastify/dist/ReactToastify.css';
 import Swal from "sweetalert2";
+import { AuthContext } from '../../Providers/AuthProvider';
 
 const MyAddedJobList = ({jobs}) => {
-  console.log('Here are the jobs', jobs)
+  // console.log('Here are the jobs', jobs)
+
+  const {theme} = useContext(AuthContext)
 
   const {_id, image, title, category, salaryRange, postingDate, deadline} = jobs;
 
@@ -71,7 +74,7 @@ const MyAddedJobList = ({jobs}) => {
          <div className="overflow-x-auto"  data-aos="fade-up" data-aos-easing="linear" data-aos-duration="800">
   <table className="table">
    
-    <thead className="text-white">
+    <thead className={theme === 'light' ? "text-black" : "text-white"}>
       <tr>
         <th>Image</th>
         <th>Title</th>
@@ -86,7 +89,7 @@ const MyAddedJobList = ({jobs}) => {
     </thead>
     <tbody>
       
-      <tr className="bg-gray-400 border-[0px] bg-opacity-70 text-white font-bold text-[14px]">
+      <tr className={`border-[0px]   font-bold text-[14px] ${theme === 'light' ? 'text-white bg-black' : 'text-white bg-gray-400 opacity-90'}`}>
         <td><img className="xl:h-[100px] xl:w-[150px]" src={image} alt="" /></td>
         <td className="w-auto xl:w-[250px]">{title}</td>
         <td>{category}</td>
@@ -94,10 +97,10 @@ const MyAddedJobList = ({jobs}) => {
         <td>{postingDate}</td>
         <td>{deadline}</td>
 
-        <td><button onClick={() => handleDelete(_id)} className="btn bg-gray-400 bg-opacity-70 border-0 text-white hover:text-black hover:bg-white duration-700">Delete</button></td>
+        <td><button onClick={() => handleDelete(_id)} className={`btn font-light rounded-xl transition-all ${theme === 'light' ? 'text-black bg-white' : 'text-white bg-black'}`}>Delete</button></td>
         <td>
           <Link to={`/updatejob/${_id}`}>
-          <button className="btn bg-gray-400 bg-opacity-70 border-0 text-white hover:text-black hover:bg-white duration-700">Update</button>
+          <button className={`btn font-light rounded-xl transition-all ${theme === 'light' ? 'text-black bg-white' : 'text-white bg-black'}`}>Update</button>
           </Link>
          </td>
       </tr>

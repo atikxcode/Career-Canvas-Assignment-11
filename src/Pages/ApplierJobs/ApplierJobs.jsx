@@ -42,7 +42,7 @@ const ApplierJobs = () => {
   // filtered applied job
 
   const filteredAppliedJobs = appliedJob.filter(job => job?.email === user?.email);
-  console.log(filteredAppliedJobs)
+  // console.log(filteredAppliedJobs)
 
   const categoryFilter = filteredAppliedJobs.filter(job => job.category.toLowerCase().includes(searchTerm.toLowerCase()));
 
@@ -60,10 +60,10 @@ const ApplierJobs = () => {
       <div className="w-[300px]">
         
         <form onSubmit={(e) => e.preventDefault()} className={`input rounded-xl  input-bordered flex items-center gap-2 ${
-        theme === 'light' ? "text-white bg-black " : "text-white "
+        theme === 'light' ? "text-white bg-black " : "text-black bg-white"
       }`}>
         <input type="text" className="grow" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder="Search" />
-        <button className="text-white"><FaSearch /></button>
+        <button className={`${theme === 'light' ? 'text-white' : 'text-black'}`}><FaSearch /></button>
         </form>
         </div>
 
@@ -71,7 +71,7 @@ const ApplierJobs = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-16">
       {
         (searchTerm ? categoryFilter : filteredAppliedJobs).map(jobApplied => <div data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1500" className="" key={jobApplied._id}>
-          <div className=" hover:scale-110 duration-1000 transition-all bg-[#1b1b1b] w-[450px]">
+          <div className="mx-auto hover:scale-110 duration-1000 transition-all bg-[#1b1b1b] w-[90%] xl:w-[450px]">
           <img className=" h-[350px] " src={jobApplied?.image} alt="" />
          
          <div className="flex justify-between">

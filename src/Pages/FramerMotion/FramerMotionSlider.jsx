@@ -31,8 +31,8 @@ const FramerMotionSlider = ({isVisible}) => {
         >
           <motion.img src={images[current]}  style={{width: '100%'}} />
           <motion.div style={{position: 'absolute', top:'50%', left: '50%', transform: 'translate(-50%, -50%)'}}>
-            <h2 className='text-[55px] text-white font-semibold text-center'>Find Your Next Opportunity Today!</h2>
-            <p className='text-lg leading-[40px] text-white text-center mt-8'>Welcome to our job hunting platform, where endless opportunities await. Whether you're seeking your dream job, exploring new career paths, or looking to advance your skills, we've got you covered. Browse through a diverse range of job listings from top companies and industries, and take the next step towards your professional journey. Start exploring now and let your career aspirations take flight!</p>
+            <h2 className='text-[15px] md:text-[35px] lg:text-[45px] xl:text-[55px] text-white font-semibold text-center'>Find Your Next Opportunity Today!</h2>
+            <p className='text-[14px] xl:text-lg xl:leading-[40px] text-white text-center mt-1 md:mt-4 lg:mt-6 xl:mt-8'>Welcome to our job hunting platform, where endless opportunities await. Whether you're seeking your dream job, exploring new career paths, or looking to advance your skills, we've got you covered.</p>
           </motion.div>
         </motion.div>
       )}

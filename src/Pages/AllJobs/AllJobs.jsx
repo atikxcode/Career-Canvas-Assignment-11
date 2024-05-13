@@ -40,7 +40,7 @@ const AllJobs = () => {
   // filtered Job
   const filteredJobs = jobLists.filter(job => job.title.toLowerCase().includes(searchTerm.toLowerCase()));
 
-  console.log(jobLists)
+  // console.log(jobLists)
 
   return (
     <div className=" relative">
@@ -54,8 +54,8 @@ const AllJobs = () => {
      <div className=" w-full h-[900px]  relative" style={{backgroundImage: `url(${image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover'}}>
         <NavBar></NavBar>
         <div className="absolute top-[40%] flex flex-col justify-center text-center  w-full items-center gap-8">
-        <h2 className="text-[35px] text-white">Explore Exciting Opportunities: <span className="text-orange-400">Browse Our Job Listings</span></h2>
-        <p className="text-[18px] text-white w-[900px] text-center">Welcome to our job listings page! Discover a diverse range of career opportunities waiting for you. Whether you're seeking full-time, part-time, remote, or hybrid positions, we have something for everyone. Browse through our curated collection of job openings and take the next step towards your professional journey. Start exploring now and find your dream job today!</p>
+        <h2 className="text-[24px] md:text-[25px] lg:text-[30px] xl:text-[35px] text-white">Explore Exciting Opportunities: <span className="text-orange-400">Browse Our Job Listings</span></h2>
+        <p className="text-[16px] xl:text-[18px] text-white xl:w-[900px] text-center">Welcome to our job listings page! Discover a diverse range of career opportunities waiting for you. Whether you're seeking full-time, part-time, remote, or hybrid positions, we have something for everyone. Browse through our curated collection of job openings and take the next step towards your professional journey. Start exploring now and find your dream job today!</p>
         <button className="btn ">Explore Now</button>
         </div>
         </div>
@@ -64,10 +64,10 @@ const AllJobs = () => {
         <div className="w-[300px]">
         
         <form onSubmit={(e) => e.preventDefault()} className={`input rounded-xl  input-bordered flex items-center gap-2 ${
-        theme === 'light' ? "text-white bg-black " : "text-white "
+        theme === 'light' ? "text-white bg-black " : "text-black bg-white"
       }`}>
         <input type="text" className="grow" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder="Search" />
-        <button className="text-white"><FaSearch /></button>
+        <button className={`${theme === 'light' ? 'text-white' : 'text-black'}`}><FaSearch /></button>
         </form>
         </div>
           
@@ -97,13 +97,13 @@ const AllJobs = () => {
           
           <tbody>
             
-            <tr className="bg-gray-400 border-[0px] bg-opacity-70 text-white font-bold text-[14px]">
-              <td><img className="h-[350px] w-[625px]" src={job.image} alt="" /></td>
+            <tr className={` border-[0px] font-bold text-[14px] ${theme === 'light' ? 'text-white bg-black' : 'text-black bg-white'}`}>
+              <td><img className="h-[50px] md:h-[200px] lg:h-[250px] xl:h-[350px] w-[300px] xl:w-[625px]" src={job.image} alt="" /></td>
               <td className="w-auto xl:w-[250px]">{job.title}</td>
               <td>{job.postingDate}</td>
               <td>{job.deadline}</td>
               <td>{job.salaryRange}</td>
-              <td> <Link to={`/viewdetails/${job._id}`}> <button  className=" btn font-light hover:text-white  transition-all">View Details</button></Link></td>
+              <td> <Link to={`/viewdetails/${job._id}`}> <button  className={`btn font-light transition-all ${theme === 'light' ? 'text-black bg-white' : 'text-white bg-black'}`}>View Details</button></Link></td>
             </tr>
            
           </tbody>

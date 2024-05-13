@@ -65,17 +65,17 @@ const NavBar = () => {
      <div className="navbar ">
   <div className="navbar-start">
     <div className="dropdown">
-      <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden text-white">
+      <div tabIndex={0} role="button" className={`btn btn-ghost lg:hidden ${theme === 'light' ? 'text-black' : 'text-white'}`}>
         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
       </div>
-      <ul tabIndex="0" className=" menu menu-sm dropdown-content mt-3 z-20 p-2 shadow  rounded-box w-52 bg-inherit font-semibold text-white">
+      <ul tabIndex="0" className={` menu menu-sm dropdown-content mt-3 z-20 p-2 shadow  rounded-box w-52 bg-inherit font-semibold ${theme === 'light' ? 'text-black' : 'text-white'}`}>
         
         {navLinks}
       </ul>
     </div>
   <Link to='/'>
   <div className="flex items-center gap-4">
-   <img className="h-[60px] w-[60px] rounded-[50%]" src={image} alt="" />
+   <img className="h-[60px] w-[60px] rounded-[50%] hidden md:block lg:block xl:block" src={image} alt="" />
     <h2 className="font-bold  md:text-2xl lg:text-xl xl:text-xl text-orange-400 ">CareerCanvas</h2>
    </div>
   </Link>
@@ -103,7 +103,7 @@ const NavBar = () => {
 </div>
     {
       user ? 
-      <button  className={`p-4 text-[14px] font-bold   border-0 ${
+      <button  className={`p-3 md:p-4 lg:p-4 xl:p-4 text-[13px] md:text-[14px] lg::text-[14px] xl:text-[14px] font-bold   border-0 ${
         theme === 'light' ? "text-white bg-black " : "text-black bg-white"
       } duration-700`}
 

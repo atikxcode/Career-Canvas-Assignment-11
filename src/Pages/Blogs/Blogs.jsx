@@ -19,11 +19,11 @@ const Blogs = () => {
       <div className="flex flex-col items-center gap-8">
 
 
-      <h1 className="text-5xl font-semibold text-orange-500 opacity-90">Discover Your Next Career Move</h1>
-      <p className={`text-xl w-[900px] text-center ${ theme === 'light' ? 'text-black' : 'text-white'}`}>Welcome to our job-centric blog, where opportunities meet insights. Dive into a wealth of resources tailored to job seekers and career enthusiasts. From industry trends to interview tips, we're here to empower you on your professional journey. Let's navigate the job market together and unlock new horizons.</p>
+      <h1 className="text-2xl md:text-4xl lg:text-5xl xl:text-5xl font-semibold text-orange-500 opacity-90">Discover Your Next Career Move</h1>
+      <p className={`text-xl xl:w-[900px] text-center ${ theme === 'light' ? 'text-black' : 'text-white'}`}>Welcome to our job-centric blog, where opportunities meet insights. Dive into a wealth of resources tailored to job seekers and career enthusiasts. From industry trends to interview tips, we're here to empower you on your professional journey. Let's navigate the job market together and unlock new horizons.</p>
 
 
-      <h2 className={`text-5xl w-[900px] mt-20 text-center ${ theme === 'light' ? 'text-black' : 'text-white'}`}>Our Recent <span className="text-orange-500 font-bold">Blogs</span></h2>
+      <h2 className={`text-5xl xl:w-[900px] mt-20 text-center ${ theme === 'light' ? 'text-black' : 'text-white'}`}>Our Recent <span className="text-orange-500 font-bold">Blogs</span></h2>
 
 
       <div className={`collapse collapse-arrow rounded-xl ${ theme === 'light' ? 'text-white bg-black ' : 'text-black bg-white'}`}>
