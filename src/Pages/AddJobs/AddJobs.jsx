@@ -7,6 +7,7 @@ import DatePicker from "react-datepicker";
 import image from '../../assets/city.jpg'
 import "react-datepicker/dist/react-datepicker.css";
 import NavBar from "../NavBar/NavBar";
+import axios from "axios";
 
 const AddJobs = () => {
 
@@ -41,23 +42,23 @@ const AddJobs = () => {
     const newJobPost = {image, title, email, name, category, salaryRange, description,postingDate, deadline, totalApplied };
     console.log(newJobPost)
 
-    fetch('http://localhost:5000/joblisted', {
-      method: "POST",
-      headers: {
-        'content-type': 'application/json'
-      },
-      body: JSON.stringify(newJobPost)
-    })
-    .then(res => res.json())
-    .then(data => {
-      console.log(data)
-      if(data.insertedId){
-         notify();
-         
-      }
-      
-      form.reset();
-    })
+  
+
+    axios.post('https://assignment-11-server-gray-one.vercel.app/joblisted', newJobPost, {
+  headers: {
+    'Content-Type': 'application/json'
+  }
+})
+.then(res => {
+  console.log(res.data);
+  if (res.data.insertedId) {
+    notify();
+  }
+  form.reset();
+})
+.catch(error => {
+  console.error('Error:', error);
+});
     
   }
 

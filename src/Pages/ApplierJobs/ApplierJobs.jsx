@@ -1,13 +1,16 @@
 import { useQuery } from "@tanstack/react-query";
 import NavBar from "../NavBar/NavBar";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProvider";
 import 'aos/dist/aos.css'
 import Aos from "aos";
 import { Link } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
 
+
+
 const ApplierJobs = () => {
+
 
 
 
@@ -24,7 +27,7 @@ const ApplierJobs = () => {
   const {isPending, isError, error,  data: appliedJob} = useQuery({
     queryKey: ['appliedjob'],
     queryFn: async () => {
-      const res = await fetch('http://localhost:5000/appliedjob')
+      const res = await fetch('https://assignment-11-server-gray-one.vercel.app/appliedjob')
       return res.json();
     }
   })
@@ -96,7 +99,7 @@ const ApplierJobs = () => {
 
 
       </div>
-
+    
     </div>
   );
 };

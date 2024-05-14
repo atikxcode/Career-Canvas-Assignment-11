@@ -24,7 +24,7 @@ const AllJobs = () => {
   const {isPending, isError, error,  data: jobLists} = useQuery({
     queryKey: ['jobs'],
     queryFn: async () => {
-      const res = await fetch('http://localhost:5000/joblisted')
+      const res = await fetch('https://assignment-11-server-gray-one.vercel.app/joblisted')
       return res.json();
     }
   })

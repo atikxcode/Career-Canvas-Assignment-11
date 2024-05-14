@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import NavBar from "../NavBar/NavBar";
 import { AuthContext } from "../../Providers/AuthProvider";
 import MyAddedJobList from "./MyAddedJobList";
+import axios from "axios";
 
 const MyJobs = () => {
 
@@ -16,17 +17,15 @@ const MyJobs = () => {
       return;
     }
 
-    fetch('http://localhost:5000/joblisted')
-    .then(res => res.json())
-    .then(data => {
-      console.log(data);
-      const filteredJobs = data?.filter(job => job?.email === user?.email);
-      setMyJobs(filteredJobs)
-      console.log("This are the filtered job", filteredJobs)
+    axios.get('https://assignment-11-server-gray-one.vercel.app/joblisted')
+    .then(response => {
+      const filteredJobs = response.data.filter(job => job.email === user.email);
+      setMyJobs(filteredJobs);
+      console.log("These are the filtered jobs:", filteredJobs);
     })
     .catch(error => {
-      console.error('Error fetching data', error)
-    })
+      console.error('Error fetching data:', error);
+    });
 
 
 

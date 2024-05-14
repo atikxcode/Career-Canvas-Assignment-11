@@ -4,6 +4,7 @@ import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWith
 import app from "../Firebase/firebase.config";
 
 import { GoogleAuthProvider, GithubAuthProvider  } from "firebase/auth";
+import axios from "axios";
 
 
 const auth = getAuth(app);
@@ -52,13 +53,32 @@ const AuthProvider = ({children}) => {
   useEffect(() => {
    const unSubscribe =  onAuthStateChanged(auth, currentUser => {
       console.log('user in the auth state changed', currentUser)
-      setUser(currentUser)
-      setLoading(false)
+      const userEmail = currentUser?.email || user?.email;
+      const loggedUser = {email: userEmail}
+      setUser(currentUser);
+      setLoading(false);
+      // if user exists then issue a token
+      if(currentUser){
+        
+        axios.post('https://assignment-11-server-gray-one.vercel.app/jwt', loggedUser, 
+        {withCredentials: true})
+        .then(res => {
+          console.log('Token response', res.data)
+        })
+      }
+      else {
+          axios.post('https://assignment-11-server-gray-one.vercel.app/logout',loggedUser, {
+            withCredentials: true
+          })
+          .then(res => {
+            console.log(res.data)
+          })
+      }
     });
     return () => {
       unSubscribe();
     }
-  },[])
+  },[user?.email])
 
 
 

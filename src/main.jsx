@@ -81,18 +81,18 @@ const router = createBrowserRouter([
       {
         path: '/updatejob/:id',
         element: <UpdateJob></UpdateJob>,
-        loader: ({params}) => fetch(`http://localhost:5000/joblisted/${params.id}`)
+        loader: ({params}) => fetch(`https://assignment-11-server-gray-one.vercel.app/joblisted/${params.id}`)
       },
       {
         path: '/viewdetails/:id',
         element: <PrivateRoute><ViewDetails></ViewDetails></PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/joblisted/${params.id}`)
+        loader: ({params}) => fetch(`https://assignment-11-server-gray-one.vercel.app/joblisted/${params.id}`)
       },
 
       {
         path: '/viewdetails2/:id',
         element: <PrivateRoute><ViewDetails2></ViewDetails2></PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/appliedjob/${params.id}`)
+        loader: ({params}) => fetch(`https://assignment-11-server-gray-one.vercel.app/appliedjob/${params.id}`)
       },
     ]
   },

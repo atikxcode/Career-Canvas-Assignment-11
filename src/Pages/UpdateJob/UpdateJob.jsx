@@ -51,7 +51,7 @@ const UpdateJob = () => {
     const updatedJobPost = {image, title, email, name, category, salaryRange, description,postingDate, deadline, totalApplied };
     console.log('updated job post here', updatedJobPost)
 
-    fetch(`http://localhost:5000/joblisted/${_id}`, {
+    fetch(`https://assignment-11-server-gray-one.vercel.app/joblisted/${_id}`, {
       method: "PUT",
       headers: {
         'content-type': 'application/json'

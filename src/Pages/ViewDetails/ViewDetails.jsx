@@ -44,7 +44,7 @@ const ViewDetails = () => {
       return notify2();
     } else {
       try{
-        const response = await fetch(`http://localhost:5000/joblisted/${id}/apply`, {
+        const response = await fetch(`https://assignment-11-server-gray-one.vercel.app/joblisted/${id}/apply`, {
           method: 'PUT',
           headers: {
             'content-type': 'application/json'
@@ -65,7 +65,7 @@ const ViewDetails = () => {
         const AppliedJobDetails = {image: jobDetails.image, title: jobDetails.title, email: user?.email, name: user?.displayName, category: jobDetails.category, salaryRange: jobDetails.salaryRange, description: jobDetails.description, postingDate: jobDetails.postingDate, deadline: jobDetails.deadline};
       console.log(AppliedJobDetails)
   
-      fetch('http://localhost:5000/appliedjob', {
+      fetch('https://assignment-11-server-gray-one.vercel.app/appliedjob', {
         method: "POST",
         headers: {
           'content-type': 'application/json'

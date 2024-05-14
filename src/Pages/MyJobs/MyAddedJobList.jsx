@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import 'react-toastify/dist/ReactToastify.css';
 import Swal from "sweetalert2";
 import { AuthContext } from '../../Providers/AuthProvider';
+import axios from 'axios';
 
 const MyAddedJobList = ({jobs}) => {
   // console.log('Here are the jobs', jobs)
@@ -18,8 +19,8 @@ const MyAddedJobList = ({jobs}) => {
   },[])
 
 
+
   const handleDelete = id => {
-    // Display Swal confirmation dialog
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -28,36 +29,30 @@ const MyAddedJobList = ({jobs}) => {
       confirmButtonText: "Yes, delete it!",
       cancelButtonText: "No, cancel!",
       reverseButtons: true,
-      
-    }).then((result) => {
+    }).then(result => {
       if (result.isConfirmed) {
-        // If user confirms deletion, send DELETE request to server
-        fetch(`http://localhost:5000/joblisted/${id}`, {
-          method: 'DELETE',
-        })
-        .then(res => res.json())
-        .then(data => {
-          if(data.deletedCount > 0){
+        axios.delete(`https://assignment-11-server-gray-one.vercel.app/joblisted/${id}`)
+          .then(response => {
+            const data = response.data;
+            if (data.deletedCount > 0) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success"
+              }).then(() => {
+                window.location.reload();
+              });
+            }
+          })
+          .catch(error => {
+            console.error('Error deleting file:', error);
             Swal.fire({
-              title: "Deleted!",
-              text: "Your file has been deleted.",
-              icon: "success"
-            }).then(() => {
-              // Reload the page after deletion
-              window.location.reload();
+              title: "Error",
+              text: "An error occurred while deleting the file.",
+              icon: "error"
             });
-          }
-        })
-        .catch(error => {
-          console.error('Error deleting file:', error);
-          Swal.fire({
-            title: "Error",
-            text: "An error occurred while deleting the file.",
-            icon: "error"
           });
-        });
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        // If user cancels deletion, display a message
         Swal.fire({
           title: "Cancelled",
           text: "Your imaginary file is safe :)",
@@ -66,6 +61,11 @@ const MyAddedJobList = ({jobs}) => {
       }
     });
   };
+
+
+
+
+
 
 
 
