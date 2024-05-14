@@ -12,6 +12,7 @@ import logo from '../../assets/C (2).png'
 import bg from '../../assets/building-business-city-construction-geometry.jpg'
 import 'aos/dist/aos.css'
 import Aos from "aos";
+import { Helmet } from 'react-helmet';
 
 const Register = () => {
 
@@ -99,6 +100,11 @@ const Register = () => {
 
   return (
     <div>
+      <Helmet>
+      <meta charSet="utf-8" />
+      <title>CareerCanvas - Register</title>
+
+      </Helmet> 
       <NavBar></NavBar>
 
 

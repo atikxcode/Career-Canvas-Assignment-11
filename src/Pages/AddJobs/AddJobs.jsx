@@ -9,6 +9,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import NavBar from "../NavBar/NavBar";
 import axios from "axios";
 
+
 const AddJobs = () => {
 
   const [startDate, setStartDate] = useState(new Date());
@@ -66,6 +67,11 @@ const AddJobs = () => {
   return (
     <div className="relative" >
 
+      <Helmet>
+      <meta charSet="utf-8" />
+      <title>CareerCanvas - AddJobs</title>
+
+      </Helmet>   
 
       <div className="" style={{backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),  url(${image})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover'}}>
     

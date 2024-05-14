@@ -5,6 +5,7 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
 import 'aos/dist/aos.css'
 import Aos from "aos";
+import { Helmet } from "react-helmet";
 
 const ViewDetails2 = () => {
 
@@ -28,6 +29,11 @@ const ViewDetails2 = () => {
 
   return (
     <div className="" >
+      <Helmet>
+      <meta charSet="utf-8" />
+      <title>CareerCanvas - View Details</title>
+
+      </Helmet>
       <NavBar></NavBar>
           <div className="w-full mx-auto container my-32"  data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1500" >
           <div className=" bg-[#1b1b1b]">

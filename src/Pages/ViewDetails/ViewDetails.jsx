@@ -5,9 +5,12 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import { ToastContainer, toast } from "react-toastify";
 import 'aos/dist/aos.css'
 import Aos from "aos";
+import { Helmet } from "react-helmet";
 
 
 const ViewDetails = () => {
+
+  const {theme} = useContext(AuthContext)
 
   const notify = () => toast("Successfully Applied for the job");
   const notify2 = () => toast("You can't apply for the job that you have posted");
@@ -99,6 +102,11 @@ const ViewDetails = () => {
 
   return (
     <div className="" >
+      <Helmet>
+      <meta charSet="utf-8" />
+      <title>CareerCanvas - View Details</title>
+
+      </Helmet> 
       <NavBar></NavBar>
           <div className="w-full mx-auto container my-32"  data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1500" >
           <div className=" bg-[#1b1b1b]">
@@ -143,7 +151,7 @@ const ViewDetails = () => {
           <label className="label">
             <span className="label-text">Name</span>
           </label>
-          <input type="text" defaultValue={user?.displayName} readOnly placeholder="Name" className="input input-bordered" required />
+          <input type="text" defaultValue={user?.displayName} readOnly placeholder="Name" className={`input input-bordered ${theme === 'light' ? 'text-black' : 'text-white'}`} required />
          
         </div>
 
@@ -151,7 +159,7 @@ const ViewDetails = () => {
           <label className="label">
             <span className="label-text">Email</span>
           </label>
-          <input type="email" defaultValue={user?.email} readOnly placeholder="Email" className="input input-bordered" required />
+          <input type="email" defaultValue={user?.email} readOnly placeholder="Email" className={`input input-bordered ${theme === 'light' ? 'text-black' : 'text-white'}`} required />
         </div>
 
         <div className="form-control">

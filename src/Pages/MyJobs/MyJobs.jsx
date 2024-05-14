@@ -3,6 +3,7 @@ import NavBar from "../NavBar/NavBar";
 import { AuthContext } from "../../Providers/AuthProvider";
 import MyAddedJobList from "./MyAddedJobList";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 
 const MyJobs = () => {
 
@@ -35,6 +36,11 @@ const MyJobs = () => {
 
   return (
     <div className="">
+      <Helmet>
+      <meta charSet="utf-8" />
+      <title>CareerCanvas - My Jobs</title>
+
+      </Helmet> 
       <NavBar></NavBar>
 
       <div>

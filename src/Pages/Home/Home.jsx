@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet";
 import ExtraSection from "../ExtraSection/ExtraSection";
 import ExtraSection2 from "../ExtraSection/ExtraSection2";
 import FramerMotionSlider from "../FramerMotion/FramerMotionSlider";
@@ -9,6 +10,11 @@ import Slider from "../Slider/Slider";
 const Home = () => {
   return (
     <div>
+      <Helmet>
+      <meta charSet="utf-8" />
+      <title>CareerCanvas - Home</title>
+
+      </Helmet> 
       <NavBar></NavBar>
      {/* <Slider></Slider> */}
      <div className="">

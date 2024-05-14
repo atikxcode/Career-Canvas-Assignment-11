@@ -12,9 +12,12 @@ import { Fade } from "react-awesome-reveal";
 import logo from '../../assets/C (2).png'
 import 'aos/dist/aos.css'
 import Aos from "aos";
+import { Helmet } from "react-helmet";
 
 
 const Login = () => {
+
+ 
 
 
   useEffect(() => {
@@ -92,6 +95,11 @@ const Login = () => {
   return (
     
    <div>
+     <Helmet>
+      <meta charSet="utf-8" />
+      <title>CareerCanvas - Login</title>
+
+      </Helmet> 
     <NavBar></NavBar>
     <div className="my-16" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="1500" >
     <div className="flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800 lg:max-w-4xl">

@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import NavBar from "../NavBar/NavBar";
 import { AuthContext } from "../../Providers/AuthProvider";
+import { Helmet } from "react-helmet";
 
 
 
@@ -11,6 +12,11 @@ const Blogs = () => {
 
   return (
     <div>
+      <Helmet>
+      <meta charSet="utf-8" />
+      <title>CareerCanvas - Blogs</title>
+
+      </Helmet> 
       <NavBar></NavBar>
 
       <div className="container mx-auto my-10">

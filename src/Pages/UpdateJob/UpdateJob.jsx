@@ -7,6 +7,7 @@ import DatePicker from "react-datepicker";
 import NavBar from '../NavBar/NavBar';
 import img from '../../assets/Untitled design.png'
 import 'aos/dist/aos.css'
+import { Helmet } from 'react-helmet';
 
 
 const UpdateJob = () => {
@@ -76,7 +77,11 @@ const UpdateJob = () => {
 
   return (
     <div className="relative" >
+      <Helmet>
+      <meta charSet="utf-8" />
+      <title>CareerCanvas - Update Job</title>
 
+      </Helmet> 
      
 
       <div className="" style={{backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),  url(${img})`, backgroundRepeat: 'no-repeat', backgroundSize: 'cover'}}>

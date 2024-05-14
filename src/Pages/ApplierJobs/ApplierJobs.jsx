@@ -6,6 +6,7 @@ import 'aos/dist/aos.css'
 import Aos from "aos";
 import { Link } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
+import { Helmet } from "react-helmet";
 
 
 
@@ -17,6 +18,9 @@ const ApplierJobs = () => {
   useEffect(() => {
     Aos.init();
   },[])
+
+
+
 
 
   const {user, theme} = useContext(AuthContext);
@@ -52,10 +56,15 @@ const ApplierJobs = () => {
 
   return (
     <div>
+      <Helmet>
+      <meta charSet="utf-8" />
+      <title>CareerCanvas - AppliedJob</title>
+
+      </Helmet> 
       <NavBar></NavBar>
       
 
-      <div className="container mx-auto my-20">
+      <div className="container mx-auto my-20" id='content'>
 
       <div className="flex flex-col items-center gap-24">
 
@@ -98,10 +107,20 @@ const ApplierJobs = () => {
       </div>
 
 
+      <div className="flex justify-center my-10">
+        <button className="text-gray-400 btn border-orange-400 bg-inherit hover:text-white hover:font-bold hover:border-orange-500 transition-all" onClick={() => window.print()}>Download PDF</button>
       </div>
+
+
+      </div>
+
+    
     
     </div>
   );
 };
 
 export default ApplierJobs;
+
+
+

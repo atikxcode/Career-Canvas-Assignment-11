@@ -7,6 +7,7 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import { FaSearch } from "react-icons/fa";
 import 'aos/dist/aos.css'
 import Aos from "aos";
+import { Helmet } from "react-helmet";
 
 const AllJobs = () => {
 
@@ -45,7 +46,11 @@ const AllJobs = () => {
   return (
     <div className=" relative">
 
-      
+      <Helmet>
+      <meta charSet="utf-8" />
+      <title>CareerCanvas - AllJobs</title>
+
+      </Helmet> 
         
      <div className="flex flex-col gap-24 items-center">
 
