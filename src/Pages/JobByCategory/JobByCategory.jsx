@@ -57,7 +57,7 @@ const JobByCategory = () => {
       <div className="flex flex-col items-center gap-20">
 
         {/* heading and description */}
-        <div className={`flex flex-col gap-8 items-center text-center w-[90%] xl:w-[800px] ${theme === 'light' ? 'text-black' : 'text-white'}`}>
+        <div className={`flex flex-col gap-8 items-center text-center w-[90%] xl:w-[800px] ${theme === 'light' ? 'text-black' : 'text-white'}`} data-aos="fade-up" data-aos-easing="linear" data-aos-duration="800">
           <h2 className="text-xl md:text-2xl lg:text-4xl xl:text-5xl">Discover Jobs by Category</h2>
           <p className="text-center text-[12px] md:text-xl lg:text-xl xl:text-xl  md:w-auto lg:w-auto xl:w-auto">Explore various job categories tailored to match your expertise and aspirations. From technology to healthcare, we curate a diverse array of opportunities to help you find the perfect fit for your career journey. Start exploring now!</p>
         </div>
@@ -65,7 +65,7 @@ const JobByCategory = () => {
         {/* tab data */}
 
         <div className=" w-full">
-        <div className="flex">
+        <div className="flex" data-aos="fade-up" data-aos-easing="linear" data-aos-duration="800">
           <div onClick={() => {
             setActiveTab(1),
             setFilteredTerm('All Jobs')
@@ -115,9 +115,9 @@ const JobByCategory = () => {
         </div>
 
         {activeTab === 1 && <div className={`mt-24 ${theme === 'light' ? 'text-black' : 'text-white'}`}>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-10" >
           {
-          sliceJobLists.map(job => <div key={job._id}>
+          sliceJobLists.map(job => <div key={job._id} data-aos="fade-up" data-aos-easing="linear" data-aos-duration="800">
              <div className="mx-auto hover:scale-110 duration-1000 transition-all bg-[#1b1b1b] w-[90%] xl:w-[450px]">
           <img className=" h-[350px] " src={job?.image} alt="" />
          
@@ -150,7 +150,7 @@ const JobByCategory = () => {
         {activeTab === 2 && <div className={`mt-24 ${theme === 'light' ? 'text-black' : 'text-white'}`}>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-10">
           {
-          sliceJobLists2.map(job => <div key={job._id}>
+          sliceJobLists2.map(job => <div key={job._id} data-aos="fade-up" data-aos-easing="linear" data-aos-duration="800">
              <div className="mx-auto hover:scale-110 duration-1000 transition-all bg-[#1b1b1b] w-[90%] xl:w-[450px]">
           <img className=" h-[350px] " src={job?.image} alt="" />
          
@@ -183,7 +183,7 @@ const JobByCategory = () => {
         {activeTab === 3 && <div className={`mt-24 ${theme === 'light' ? 'text-black' : 'text-white'}`}>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-10">
           {
-          sliceJobLists2.map(job => <div key={job._id}>
+          sliceJobLists2.map(job => <div key={job._id} data-aos="fade-up" data-aos-easing="linear" data-aos-duration="800">
              <div className="mx-auto hover:scale-110 duration-1000 transition-all bg-[#1b1b1b] w-[90%] xl:w-[450px]">
           <img className=" h-[350px] " src={job?.image} alt="" />
          
@@ -216,7 +216,7 @@ const JobByCategory = () => {
         {activeTab === 4 && <div className={`mt-24 ${theme === 'light' ? 'text-black' : 'text-white'}`}>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-10">
           {
-          sliceJobLists2.map(job => <div key={job._id}>
+          sliceJobLists2.map(job => <div key={job._id} data-aos="fade-up" data-aos-easing="linear" data-aos-duration="800">
              <div className="mx-auto hover:scale-110 duration-1000 transition-all bg-[#1b1b1b] w-[90%] xl:w-[450px]">
           <img className=" h-[350px] " src={job?.image} alt="" />
          
@@ -249,7 +249,7 @@ const JobByCategory = () => {
         {activeTab === 5 && <div className={`mt-24 ${theme === 'light' ? 'text-black' : 'text-white'}`}>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-10">
           {
-          sliceJobLists2.map(job => <div key={job._id} >
+          sliceJobLists2.map(job => <div key={job._id} data-aos="fade-up" data-aos-easing="linear" data-aos-duration="800">
              <div className="mx-auto hover:scale-110 duration-1000 transition-all bg-[#1b1b1b] w-[90%] xl:w-[450px]">
           <img className=" h-[350px] " src={job?.image} alt="" />
          
