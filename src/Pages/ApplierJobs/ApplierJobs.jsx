@@ -5,9 +5,10 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import 'aos/dist/aos.css'
 import Aos from "aos";
 import { Link } from "react-router-dom";
-import { FaSearch } from "react-icons/fa";
+import { FaFileDownload, FaSearch } from "react-icons/fa";
 import { Helmet } from "react-helmet";
-
+import Pdf from '../ApplierJobs/Pdf'
+import { PDFDownloadLink } from "@react-pdf/renderer";
 
 
 const ApplierJobs = () => {
@@ -95,8 +96,17 @@ const ApplierJobs = () => {
           <p className="font-extrabold">Description:   <span className="text-[14px] text-gray-400">{jobApplied?.description}</span> </p>
           <p className="font-extrabold">Deadline: <span className="text-[14px] text-gray-400">{jobApplied?.deadline}</span> </p>
           </div>
-          <div className="p-8 items-center flex">
+          <div className="p-8 items-center flex-col ">
          <Link to={`/viewdetails2/${jobApplied?._id}`}> <button className="text-gray-400 btn border-orange-400 bg-inherit hover:text-white hover:font-bold hover:border-orange-500 transition-all">View Details</button></Link>
+         <PDFDownloadLink  document={<Pdf loggedInUserEmail={jobApplied.email}
+                                        jobTitle={jobApplied.title} jobCategory= {jobApplied.category}
+                                        salaryRange={jobApplied.salaryRange} jobPostingDate={jobApplied.postingDate}
+                                        applicationDeadline={jobApplied.deadline}
+                                        jobDescription={jobApplied.description}
+                                        pictureUrl={jobApplied.image}
+                                        />} fileName="details"
+                                        
+                                        ><button className="text-gray-400 mt-4 btn border-orange-400 bg-inherit hover:text-white hover:font-bold hover:border-orange-500 transition-all">Download PDF</button></PDFDownloadLink>
           </div>
          </div>
           
@@ -107,9 +117,7 @@ const ApplierJobs = () => {
       </div>
 
 
-      <div className="flex justify-center my-10">
-        <button className="text-gray-400 btn border-orange-400 bg-inherit hover:text-white hover:font-bold hover:border-orange-500 transition-all" onClick={() => window.print()}>Download PDF</button>
-      </div>
+     
 
 
       </div>
